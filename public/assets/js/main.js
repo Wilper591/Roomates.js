@@ -65,6 +65,23 @@ const agregarGasto = async () => {
   const roommateSelected = $("#roommatesSelect").val();
   const descripcion = $("#descripcion").val();
   const monto = Number($("#monto").val());
+  const descripcionRegex = /^[A-Za-zñÑáíéóúÁÍÉÓÚäÄëËïÏöÖüÜ\d\s]+$/;
+  if (roommateSelected === null) {
+    alert("Debes ingresar un Roommate!");
+    return;
+  }
+  if (!descripcionRegex.test(descripcion)) {
+    alert("La descripción no puede contener carácteres especiales.");
+    return;
+  }
+  if (monto > 100000) {
+    alert("No puedes ingresar un monto superior a $100.000");
+    return;
+  }
+  if (monto < 1000) {
+    alert("No puedes ingresar un monto infeior a $1.000");
+    return;
+  }
   await fetch("http://localhost:3000/apiV1/gastos", {
     method: "POST",
     body: JSON.stringify({
@@ -88,6 +105,23 @@ const updateGasto = async () => {
   const roommateSelected = $("#roommatesSelectModal").val();
   const descripcion = $("#descripcionModal").val();
   const monto = Number($("#montoModal").val());
+  const descripcionRegex = /^[A-Za-zñÑáíéóúÁÍÉÓÚäÄëËïÏöÖüÜ\d\s]+$/;
+  if (roommateSelected === null) {
+    alert("Debes ingresar un Roommate!");
+    return;
+  }
+  if (!descripcionRegex.test(descripcion)) {
+    alert("La descripción no puede contener carácteres especiales.");
+    return;
+  }
+  if (monto > 100000) {
+    alert("No puedes ingresar un monto superior a $100.000");
+    return;
+  }
+  if (monto < 1000) {
+    alert("No puedes ingresar un monto infeior a $1.000");
+    return;
+  }
   await fetch("http://localhost:3000/apiV1/gastos/?id=" + gastoEditing, {
     method: "PUT",
     body: JSON.stringify({

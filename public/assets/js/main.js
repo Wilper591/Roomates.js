@@ -74,12 +74,20 @@ const agregarGasto = async () => {
     alert("La descripción no puede contener carácteres especiales.");
     return;
   }
+  if (descripcion.length > 50) {
+    alert("La descripción no puede contener más de 50 carácteres.");
+    return;
+  }
+  if (descripcion.length < 5) {
+    alert("La descripción no puede contener menos de 5 carácteres.");
+    return;
+  }
   if (monto > 100000) {
     alert("No puedes ingresar un monto superior a $100.000");
     return;
   }
   if (monto < 1000) {
-    alert("No puedes ingresar un monto infeior a $1.000");
+    alert("No puedes ingresar un monto inferior a $1.000");
     return;
   }
   await fetch("http://localhost:3000/apiV1/gastos", {
@@ -112,6 +120,14 @@ const updateGasto = async () => {
   }
   if (!descripcionRegex.test(descripcion)) {
     alert("La descripción no puede contener carácteres especiales.");
+    return;
+  }
+  if (descripcion.length > 50) {
+    alert("La descripción no puede contener más de 50 carácteres.");
+    return;
+  }
+  if (descripcion.length < 5) {
+    alert("La descripción no puede contener menos de 5 carácteres.");
     return;
   }
   if (monto > 100000) {

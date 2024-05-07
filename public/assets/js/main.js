@@ -138,7 +138,7 @@ const updateGasto = async () => {
     alert("No puedes ingresar un monto infeior a $1.000");
     return;
   }
-  await fetch("http://localhost:3000/apiV1/gastos/?id=" + gastoEditing, {
+  await fetch("https://roomates-js.onrender.com/apiV1/gastos/?id=" + gastoEditing, {
     method: "PUT",
     body: JSON.stringify({
       roommate: roommateSelected,

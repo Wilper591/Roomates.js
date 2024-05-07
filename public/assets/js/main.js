@@ -1,13 +1,14 @@
+const url_base = "https://roomates-js.onrender.com";
 let roommates = [];
 let gastos = [];
 let gastoEditing = null;
 const getRoommates = async () => {
-  const res = await fetch("https://roomates-js.onrender.com/apiV1/roommates");
+  const res = await fetch(`${url_base}/apiV1/roommates`);
   const data = await res.json();
   roommates = data.roommates;
 };
 const getGastos = async () => {
-  const res = await fetch("https://roomates-js.onrender.com/apiV1/gastos");
+  const res = await fetch(`${url_base}/apiV1/gastos`);
   const data = await res.json();
   gastos = data.gastos;
 };
@@ -54,7 +55,7 @@ const imprimir = async () => {
 };
 
 const nuevoRoommate = () => {
-  fetch("https://roomates-js.onrender.com/apiV1/roommates", { method: "POST" })
+  fetch(`${url_base}/apiV1/roommates`, { method: "POST" })
     .then((res) => res.json())
     .then(() => {
       imprimir();
@@ -90,7 +91,7 @@ const agregarGasto = async () => {
     alert("No puedes ingresar un monto inferior a $1.000");
     return;
   }
-  await fetch("https://roomates-js.onrender.com/apiV1/gastos", {
+  await fetch(`${url_base}/apiV1/gastos`, {
     method: "POST",
     body: JSON.stringify({
       roommate: roommateSelected,
@@ -103,7 +104,7 @@ const agregarGasto = async () => {
 };
 
 const deleteGasto = async (id) => {
-  await fetch("https://roomates-js.onrender.com/apiV1/gastos/?id=" + id, {
+  await fetch(`${url_base}/apiV1/gastos/?id=` + id, {
     method: "DELETE",
   });
   imprimir();
@@ -138,7 +139,7 @@ const updateGasto = async () => {
     alert("No puedes ingresar un monto infeior a $1.000");
     return;
   }
-  await fetch("https://roomates-js.onrender.com/apiV1/gastos/?id=" + gastoEditing, {
+  await fetch(`${url_base}/apiV1/gastos/?id=` + gastoEditing, {
     method: "PUT",
     body: JSON.stringify({
       roommate: roommateSelected,
